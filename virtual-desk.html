@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual Desk | Gachoya Maina & Company Advocates</title>
+  <link rel="stylesheet" href="virtual-desk.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Supabase JS client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="vd-nav">
+    <a href="index.html" class="vd-brand">
+      <div class="gmc-logo">
+        <div class="gmc-block gmc-g">G</div>
+        <div class="gmc-block gmc-m">M</div>
+        <div class="gmc-block gmc-c">C</div>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Gachoya Maina & Company</span>
+        <span class="brand-sub">Advocates</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Practice Areas</a>
+      <a href="virtual-desk.html" class="active">Virtual Desk</a>
+      <a href="index.html#team">Our Team</a>
+      <a href="index.html#contact">Contact Us</a>
+      <a href="index.html#contact" class="btn-portal">Client Portal</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="vd-hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="instant-badge"><i class="fas fa-bolt"></i> INSTANT ACCESS</div>
+      <h1>Your Virtual <span>Desk</span></h1>
+      <p>Skip the queue. Access legal services directly, right here.</p>
+    </div>
+  </section>
+
+  <!-- CARDS GRID -->
+  <section class="cards-section">
+    <div class="cards-grid">
+
+      <!-- Book Appointment -->
+      <div class="service-card" onclick="openModal('appointment')">
+        <span class="card-badge badge-yellow">QUICK ACTION</span>
+        <div class="card-icon icon-yellow"><i class="fas fa-calendar-check"></i></div>
+        <h3>Book Appointment</h3>
+        <p>Schedule a consultation with our legal experts at a time that works for you.</p>
+        <span class="card-link yellow">→ START REQUEST</span>
+      </div>
+
+      <!-- Submit Documents -->
+      <div class="service-card" onclick="openModal('documents')">
+        <span class="card-badge badge-green">DOCUMENT</span>
+        <div class="card-icon icon-green"><i class="fas fa-folder-open"></i></div>
+        <h3>Submit Documents</h3>
+        <p>Securely upload case files, contracts, and supporting documents to your advocate.</p>
+        <span class="card-link green">→ START REQUEST</span>
+      </div>
+
+      <!-- Motor Vehicle Agreements -->
+      <div class="service-card" onclick="openModal('motor')">
+        <span class="card-badge badge-blue">DOCUMENT</span>
+        <div class="card-icon icon-blue"><i class="fas fa-car"></i></div>
+        <h3>Motor Vehicle Agreements</h3>
+        <p>Draft professional sale agreements for motor vehicle transactions.</p>
+        <span class="card-link blue">→ START REQUEST</span>
+      </div>
+
+      <!-- Land Sale Agreements -->
+      <div class="service-card" onclick="openModal('land')">
+        <span class="card-badge badge-red">SERVICE</span>
+        <div class="card-icon icon-red"><i class="fas fa-home"></i></div>
+        <h3>Land Sale Agreements</h3>
+        <p>Secure land transaction documents with verified legal protection.</p>
+        <span class="card-link red">→ START REQUEST</span>
+      </div>
+
+      <!-- Request Affidavit -->
+      <div class="service-card" onclick="openModal('affidavit')">
+        <span class="card-badge badge-orange">LEGAL AID</span>
+        <div class="card-icon icon-orange"><i class="fas fa-file-alt"></i></div>
+        <h3>Request Affidavit</h3>
+        <p>Quickly generate or request a sworn affidavit for court proceedings.</p>
+        <span class="card-link orange">→ START REQUEST</span>
+      </div>
+
+      <!-- Secure Message -->
+      <div class="service-card" onclick="openModal('message')">
+        <span class="card-badge badge-purple">MESSAGE</span>
+        <div class="card-icon icon-purple"><i class="fas fa-comment-dots"></i></div>
+        <h3>Secure Message</h3>
+        <p>Send an encrypted, confidential message directly to your advocate.</p>
+        <span class="card-link purple">→ START REQUEST</span>
+      </div>
+
+      <!-- Case Tracker -->
+      <div class="service-card" onclick="openModal('tracker')">
+        <span class="card-badge badge-teal">PORTAL</span>
+        <div class="card-icon icon-teal"><i class="fas fa-search"></i></div>
+        <h3>Case Tracker</h3>
+        <p>Access your case dashboard, documents and track progress in real-time.</p>
+        <span class="card-link teal">↗ OPEN PORTAL</span>
+      </div>
+
+      <!-- Staff Access -->
+      <div class="service-card" onclick="openModal('staff')">
+        <span class="card-badge badge-gray">INTERNAL</span>
+        <div class="card-icon icon-gray"><i class="fas fa-briefcase"></i></div>
+        <h3>Staff Access</h3>
+        <p>Internal systems and team management portal for firm employees.</p>
+        <span class="card-link gray">↗ OPEN PORTAL</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== MODALS ===================== -->
+
+  <!-- APPOINTMENT MODAL -->
+  <div class="modal-overlay hidden" id="modal-appointment">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('appointment')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-yellow"><i class="fas fa-calendar-check"></i></div>
+      <h2>Book an Appointment</h2>
+      <p class="modal-desc">The following advocates are at your service. Once you book an appointment we will confirm their availability within 24 hours.</p>
+      <form onsubmit="submitModal(event,'appointment')">
+        <div class="field-label">SELECT AN ADVOCATE <span class="req">*</span></div>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="advocate_apt" value="gachoya" required />
+            <div class="radio-body">
+              <strong>ADV. JAMES GACHOYA</strong>
+              <span>HEAD REAL ESTATE, CONVEYANCING & SUCCESSION DEPARTMENTS</span>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="advocate_apt" value="maina" />
+            <div class="radio-body">
+              <strong>ADV. SARAH MAINA</strong>
+              <span>HEAD INTELLECTUAL PROPERTY & CORPORATE LAW DEPARTMENTS</span>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="advocate_apt" value="kariuki" />
+            <div class="radio-body">
+              <strong>ADV. DANIEL KARIUKI</strong>
+              <span>HEAD LITIGATION, FAMILY LAW & EMPLOYMENT DEPARTMENTS</span>
+            </div>
+          </label>
+        </div>
+        <div class="field-label">YOUR NAME <span class="req">*</span></div>
+        <input type="text" placeholder="Full Name" required />
+        <div class="field-row">
+          <div>
+            <div class="field-label">ID / PASSPORT NO. <span class="req">*</span></div>
+            <input type="text" placeholder="National ID or Passport" required />
+          </div>
+          <div>
+            <div class="field-label">YOUR MOBILE NUMBER <span class="req">*</span></div>
+            <input type="tel" placeholder="e.g. 0712345678" required />
+          </div>
+        </div>
+        <div class="field-label">YOUR EMAIL <span class="req">*</span></div>
+        <input type="email" placeholder="email@example.com" required />
+        <div class="field-row">
+          <div>
+            <div class="field-label">WHICH DAY DO YOU PROPOSE? <span class="req">*</span></div>
+            <input type="text" placeholder="Example: 18th Dec, 2026" required />
+          </div>
+          <div>
+            <div class="field-label">WHAT TIME DO YOU PROPOSE? <span class="req">*</span></div>
+            <input type="text" placeholder="Example: 11:00 am" required />
+          </div>
+        </div>
+        <div class="field-label">WHAT IS YOUR LEGAL ISSUE? <span class="req">*</span></div>
+        <textarea rows="4" placeholder="Example: I have received a dismissal letter from my employer. I have also not been paid for the last 6 months. I want your advice on the issue." required></textarea>
+        <button type="submit" class="btn-modal yellow"><i class="fas fa-paper-plane"></i> Book Appointment</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DOCUMENTS MODAL -->
+  <div class="modal-overlay hidden" id="modal-documents">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('documents')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-green"><i class="fas fa-folder-open"></i></div>
+      <h2>Submit Documents</h2>
+      <p class="modal-desc">Upload your case files, contracts, and supporting documents securely. Files are encrypted and only accessible to your assigned advocate.</p>
+      <form onsubmit="submitModal(event,'documents')">
+        <div class="field-row">
+          <div>
+            <div class="field-label">YOUR NAME <span class="req">*</span></div>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+          <div>
+            <div class="field-label">CASE / REF NUMBER</div>
+            <input type="text" placeholder="e.g. GMC/2024/001 (if known)" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">YOUR EMAIL <span class="req">*</span></div>
+            <input type="email" placeholder="email@example.com" required />
+          </div>
+          <div>
+            <div class="field-label">YOUR MOBILE NUMBER <span class="req">*</span></div>
+            <input type="tel" placeholder="e.g. 0712345678" required />
+          </div>
+        </div>
+        <div class="field-label">DOCUMENT TYPE <span class="req">*</span></div>
+        <select required>
+          <option value="">Select document type</option>
+          <option>Title Deed / Land Documents</option>
+          <option>Sale / Lease Agreement</option>
+          <option>ID / Passport Documents</option>
+          <option>Court Documents</option>
+          <option>Business / Company Documents</option>
+          <option>IP / Trademark Documents</option>
+          <option>Employment Documents</option>
+          <option>Other</option>
+        </select>
+        <div class="field-label">UPLOAD FILES <span class="req">*</span></div>
+        <div class="upload-zone" onclick="document.getElementById('docFiles').click()">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag & drop files or <span>browse</span></p>
+          <small>PDF, DOC, DOCX, JPG, PNG · Max 10MB each</small>
+          <input type="file" id="docFiles" multiple accept=".pdf,.doc,.docx,.jpg,.png" onchange="showFiles(event,'doc-file-list')" />
+        </div>
+        <div id="doc-file-list" class="file-list"></div>
+        <div class="field-label">ADDITIONAL NOTES</div>
+        <textarea rows="3" placeholder="Any specific instructions or context for these documents..."></textarea>
+        <button type="submit" class="btn-modal green"><i class="fas fa-upload"></i> Submit Documents Securely</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MOTOR VEHICLE MODAL -->
+  <div class="modal-overlay hidden" id="modal-motor">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('motor')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-blue"><i class="fas fa-car"></i></div>
+      <h2>Motor Vehicle Agreement</h2>
+      <p class="modal-desc">Provide the details below and our advocates will draft a professional motor vehicle sale agreement for you.</p>
+      <form onsubmit="submitModal(event,'motor')">
+        <div class="field-row">
+          <div>
+            <div class="field-label">SELLER'S FULL NAME <span class="req">*</span></div>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+          <div>
+            <div class="field-label">BUYER'S FULL NAME <span class="req">*</span></div>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">SELLER'S ID / PASSPORT <span class="req">*</span></div>
+            <input type="text" placeholder="National ID or Passport" required />
+          </div>
+          <div>
+            <div class="field-label">BUYER'S ID / PASSPORT <span class="req">*</span></div>
+            <input type="text" placeholder="National ID or Passport" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">VEHICLE MAKE & MODEL <span class="req">*</span></div>
+            <input type="text" placeholder="e.g. Toyota Fielder 2018" required />
+          </div>
+          <div>
+            <div class="field-label">REGISTRATION NUMBER <span class="req">*</span></div>
+            <input type="text" placeholder="e.g. KDG 123A" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">AGREED SALE PRICE (KSh) <span class="req">*</span></div>
+            <input type="number" placeholder="e.g. 850000" required />
+          </div>
+          <div>
+            <div class="field-label">YOUR MOBILE NUMBER <span class="req">*</span></div>
+            <input type="tel" placeholder="e.g. 0712345678" required />
+          </div>
+        </div>
+        <div class="field-label">YOUR EMAIL <span class="req">*</span></div>
+        <input type="email" placeholder="email@example.com" required />
+        <div class="field-label">ADDITIONAL DETAILS</div>
+        <textarea rows="3" placeholder="Any additional terms, conditions or notes about the vehicle or transaction..."></textarea>
+        <button type="submit" class="btn-modal blue"><i class="fas fa-file-contract"></i> Request Agreement Draft</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- LAND AGREEMENTS MODAL -->
+  <div class="modal-overlay hidden" id="modal-land">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('land')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-red"><i class="fas fa-home"></i></div>
+      <h2>Land Sale Agreement</h2>
+      <p class="modal-desc">Provide the details below for a professionally drafted land sale agreement with full legal protection.</p>
+      <form onsubmit="submitModal(event,'land')">
+        <div class="field-row">
+          <div>
+            <div class="field-label">SELLER'S FULL NAME <span class="req">*</span></div>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+          <div>
+            <div class="field-label">BUYER'S FULL NAME <span class="req">*</span></div>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">SELLER'S ID / PASSPORT <span class="req">*</span></div>
+            <input type="text" placeholder="National ID or Passport" required />
+          </div>
+          <div>
+            <div class="field-label">BUYER'S ID / PASSPORT <span class="req">*</span></div>
+            <input type="text" placeholder="National ID or Passport" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">LAND TITLE / PLOT NO. <span class="req">*</span></div>
+            <input type="text" placeholder="e.g. Nairobi/Block 123/456" required />
+          </div>
+          <div>
+            <div class="field-label">LAND SIZE <span class="req">*</span></div>
+            <input type="text" placeholder="e.g. 0.05 Ha / 50x100 ft" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">LOCATION / COUNTY <span class="req">*</span></div>
+            <input type="text" placeholder="e.g. Kiambu County" required />
+          </div>
+          <div>
+            <div class="field-label">AGREED SALE PRICE (KSh) <span class="req">*</span></div>
+            <input type="number" placeholder="e.g. 3500000" required />
+          </div>
+        </div>
+        <div class="field-label">YOUR MOBILE NUMBER <span class="req">*</span></div>
+        <input type="tel" placeholder="e.g. 0712345678" required />
+        <div class="field-label">YOUR EMAIL <span class="req">*</span></div>
+        <input type="email" placeholder="email@example.com" required />
+        <div class="field-label">ADDITIONAL NOTES</div>
+        <textarea rows="3" placeholder="Any specific terms, conditions or notes about the transaction..."></textarea>
+        <button type="submit" class="btn-modal red"><i class="fas fa-file-signature"></i> Request Agreement Draft</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- AFFIDAVIT MODAL -->
+  <div class="modal-overlay hidden" id="modal-affidavit">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('affidavit')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-orange"><i class="fas fa-file-alt"></i></div>
+      <h2>Request an Affidavit</h2>
+      <p class="modal-desc">Fill in the details below and our advocates will draft your sworn affidavit for court proceedings or official use.</p>
+      <form onsubmit="submitModal(event,'affidavit')">
+        <div class="field-label">YOUR FULL NAME <span class="req">*</span></div>
+        <input type="text" placeholder="Full Name as it appears on your ID" required />
+        <div class="field-row">
+          <div>
+            <div class="field-label">ID / PASSPORT NO. <span class="req">*</span></div>
+            <input type="text" placeholder="National ID or Passport" required />
+          </div>
+          <div>
+            <div class="field-label">YOUR MOBILE NUMBER <span class="req">*</span></div>
+            <input type="tel" placeholder="e.g. 0712345678" required />
+          </div>
+        </div>
+        <div class="field-label">YOUR EMAIL <span class="req">*</span></div>
+        <input type="email" placeholder="email@example.com" required />
+        <div class="field-label">PURPOSE / TYPE OF AFFIDAVIT <span class="req">*</span></div>
+        <select required>
+          <option value="">Select affidavit type</option>
+          <option>Lost Document Affidavit</option>
+          <option>Change of Name Affidavit</option>
+          <option>Next of Kin Affidavit</option>
+          <option>Statutory Declaration</option>
+          <option>Supporting Affidavit (Court)</option>
+          <option>Other</option>
+        </select>
+        <div class="field-label">DETAILS / FACTS TO BE SWORN <span class="req">*</span></div>
+        <textarea rows="5" placeholder="Describe the facts you wish to swear to in this affidavit. Be as specific as possible. Example: I, [Name], do hereby declare that I am the biological mother of [Child's Name] born on [Date]..." required></textarea>
+        <button type="submit" class="btn-modal orange"><i class="fas fa-stamp"></i> Request Affidavit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SECURE MESSAGE MODAL -->
+  <div class="modal-overlay hidden" id="modal-message">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('message')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-purple"><i class="fas fa-comment-dots"></i></div>
+      <h2>Secure Message</h2>
+      <p class="modal-desc">Send an encrypted, confidential message directly to your advocate. Protected by attorney-client privilege.</p>
+      <form onsubmit="submitModal(event,'message')">
+        <div class="field-label">SELECT AN ADVOCATE <span class="req">*</span></div>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="advocate_msg" value="gachoya" required />
+            <div class="radio-body">
+              <strong>ADV. JAMES GACHOYA</strong>
+              <span>REAL ESTATE & CONVEYANCING</span>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="advocate_msg" value="maina" />
+            <div class="radio-body">
+              <strong>ADV. SARAH MAINA</strong>
+              <span>INTELLECTUAL PROPERTY & CORPORATE LAW</span>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="advocate_msg" value="kariuki" />
+            <div class="radio-body">
+              <strong>ADV. DANIEL KARIUKI</strong>
+              <span>LITIGATION & FAMILY LAW</span>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="advocate_msg" value="general" />
+            <div class="radio-body">
+              <strong>GENERAL ENQUIRY</strong>
+              <span>OFFICE — ALL DEPARTMENTS</span>
+            </div>
+          </label>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">YOUR NAME <span class="req">*</span></div>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+          <div>
+            <div class="field-label">CASE REF (if any)</div>
+            <input type="text" placeholder="e.g. GMC/2024/001" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <div class="field-label">YOUR EMAIL <span class="req">*</span></div>
+            <input type="email" placeholder="email@example.com" required />
+          </div>
+          <div>
+            <div class="field-label">YOUR MOBILE NUMBER <span class="req">*</span></div>
+            <input type="tel" placeholder="e.g. 0712345678" required />
+          </div>
+        </div>
+        <div class="field-label">SUBJECT <span class="req">*</span></div>
+        <input type="text" placeholder="Message subject" required />
+        <div class="field-label">YOUR MESSAGE <span class="req">*</span></div>
+        <textarea rows="5" placeholder="Type your confidential message here..." required></textarea>
+        <div class="encrypt-badge"><i class="fas fa-lock"></i> End-to-End Encrypted · Attorney-Client Privilege Protected</div>
+        <button type="submit" class="btn-modal purple"><i class="fas fa-paper-plane"></i> Send Secure Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CASE TRACKER MODAL -->
+  <div class="modal-overlay hidden" id="modal-tracker">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('tracker')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-teal"><i class="fas fa-search"></i></div>
+      <h2>Case Tracker</h2>
+      <p class="modal-desc">Enter your case reference number to view real-time progress on your matter.</p>
+      <div class="tracker-body">
+        <div class="field-label">CASE / REFERENCE NUMBER <span class="req">*</span></div>
+        <input type="text" id="trackRef" placeholder="e.g. GMC/2024/001" />
+        <div class="field-label">YOUR EMAIL <span class="req">*</span></div>
+        <input type="email" id="trackEmail" placeholder="email@example.com" />
+        <button class="btn-modal teal" onclick="runTracker()"><i class="fas fa-search"></i> Track My Case</button>
+
+        <div id="tracker-result" class="tracker-result hidden">
+          <div class="tr-header">
+            <div class="tr-ref">GMC/2024/001</div>
+            <div class="tr-meta">
+              <h4>Land Transfer & Conveyancing Matter</h4>
+              <div class="tr-tags">
+                <span class="tag-blue">Real Estate</span>
+                <span class="tag-green">In Progress</span>
+              </div>
+            </div>
+            <div class="tr-advocate">Adv. James Gachoya</div>
+          </div>
+          <div class="timeline">
+            <div class="tl-item done">
+              <div class="tl-dot"><i class="fas fa-check"></i></div>
+              <div class="tl-line"></div>
+              <div class="tl-info"><strong>Initial Consultation</strong><span>Completed · 12 Jan 2024</span></div>
+            </div>
+            <div class="tl-item done">
+              <div class="tl-dot"><i class="fas fa-check"></i></div>
+              <div class="tl-line"></div>
+              <div class="tl-info"><strong>Documents Received & Reviewed</strong><span>Completed · 18 Jan 2024</span></div>
+            </div>
+            <div class="tl-item done">
+              <div class="tl-dot"><i class="fas fa-check"></i></div>
+              <div class="tl-line"></div>
+              <div class="tl-info"><strong>Title Search Filed</strong><span>Completed · 25 Jan 2024 — Title clear</span></div>
+            </div>
+            <div class="tl-item active">
+              <div class="tl-dot"><i class="fas fa-spinner fa-spin"></i></div>
+              <div class="tl-line"></div>
+              <div class="tl-info"><strong>Conveyancing in Progress</strong><span>Ongoing · Est. completion 15 Feb 2024</span></div>
+            </div>
+            <div class="tl-item pending">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-info"><strong>Stamp Duty Payment</strong><span>Pending · Est. 10 Feb 2024</span></div>
+            </div>
+            <div class="tl-item pending last">
+              <div class="tl-dot"></div>
+              <div class="tl-line"></div>
+              <div class="tl-info"><strong>Final Registration & Title Transfer</strong><span>Pending · Est. 15 Feb 2024</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAFF ACCESS MODAL -->
+  <div class="modal-overlay hidden" id="modal-staff">
+    <div class="modal modal-sm">
+      <button class="modal-close" onclick="closeModal('staff')"><i class="fas fa-times"></i></button>
+      <div class="modal-icon icon-gray"><i class="fas fa-briefcase"></i></div>
+      <h2>Staff Access</h2>
+      <p class="modal-desc">This portal is for GMC Advocates employees only. Please log in with your staff credentials.</p>
+      <form onsubmit="submitModal(event,'staff')">
+        <div class="field-label">STAFF EMAIL <span class="req">*</span></div>
+        <input type="email" placeholder="yourname@gachoyamaina.co.ke" required />
+        <div class="field-label">PASSWORD <span class="req">*</span></div>
+        <input type="password" placeholder="••••••••" required />
+        <button type="submit" class="btn-modal gray"><i class="fas fa-sign-in-alt"></i> Login to Staff Portal</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay hidden" id="modal-success">
+    <div class="modal modal-sm success-modal">
+      <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+      <h2>Request Submitted!</h2>
+      <p id="success-msg">Your request has been received. An advocate will be in touch within 24 hours.</p>
+      <div class="success-ref">Reference: <strong id="success-ref">GMC-2024-0000</strong></div>
+      <button class="btn-modal yellow" onclick="closeSuccess()"><i class="fas fa-home"></i> Back to Virtual Desk</button>
+    </div>
+  </div>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/254700000000" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <script src="supabase-config.js"></script>
+  <script src="virtual-desk.js"></script>
+</body>
+</html>
